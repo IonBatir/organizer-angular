@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="auth.user | async as user; else showLogin" class="container">
   <header>
     <app-month-selector></app-month-selector>
   </header>
@@ -9,3 +9,8 @@
     <app-organizer></app-organizer>
   </div>
 </div>
+<ng-template #showLogin>
+  <div class="container-center">
+    <button class="btn btn-primary" (click)="login()">Autentificare cu Google</button>
+  </div>
+</ng-template>
