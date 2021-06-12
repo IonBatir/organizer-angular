@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "organizer-cc486": {
+      "hosting": {
+        "organizer": [
+          "organizer-cc486"
+        ]
+      }
+    }
+  }
+}
