@@ -8,6 +8,10 @@ import * as dayjs from "dayjs";
 export class DateService {
   public date: BehaviorSubject<dayjs.Dayjs> = new BehaviorSubject(dayjs());
 
-  constructor() {
+  changeMonth(direction: number) {
+    const value = this.date.value.add(direction, 'month');
+    this.date.next(value);
   }
+
+
 }

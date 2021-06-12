@@ -2,7 +2,8 @@ import {Pipe, PipeTransform} from '@angular/core';
 import * as dayjs from "dayjs";
 
 @Pipe({
-  name: 'dayjs'
+  name: 'dayjs',
+  pure: false
 })
 export class DayjsPipe implements PipeTransform {
 

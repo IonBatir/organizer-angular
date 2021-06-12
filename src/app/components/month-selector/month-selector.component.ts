@@ -11,4 +11,8 @@ export class MonthSelectorComponent {
   constructor(public dateService: DateService) {
   }
 
+  go(direction: number) {
+    this.dateService.changeMonth(direction);
+  }
+
 }
