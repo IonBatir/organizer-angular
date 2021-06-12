@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DateService} from "../../services/date.service";
 
 @Component({
   selector: 'app-month-selector',
   templateUrl: './month-selector.component.html',
   styleUrls: ['./month-selector.component.scss']
 })
-export class MonthSelectorComponent implements OnInit {
+export class MonthSelectorComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(public dateService: DateService) {
   }
 
 }
