@@ -7,7 +7,7 @@ import * as dayjs from "dayjs";
 })
 export class DayjsPipe implements PipeTransform {
 
-  transform(value: dayjs.Dayjs | null, format: string = 'MMMM YYYY'): string {
+  transform(value: dayjs.Dayjs | null, format?: string): string {
     return value ? value.format(format) : '-';
   }
 
