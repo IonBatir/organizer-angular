@@ -5,6 +5,7 @@ import {Observable,} from "rxjs";
 
 import {DateService} from "../../services/date.service";
 import {switchMap} from "rxjs/operators";
+import {FirestoreService} from "../../services/firestore.service";
 
 @Component({
   selector: 'app-organizer',
@@ -18,29 +19,27 @@ export class OrganizerComponent implements OnInit {
     name: new FormControl('', Validators.required)
   });
 
-  constructor(public dateService: DateService, private firestore: AngularFirestore) {
+  constructor(public dateService: DateService, private firestoreService: FirestoreService) {
   }
 
   ngOnInit(): void {
     this.dateService.date
-      .pipe(switchMap(value => this.firestore
-        .collection("tasks", ref => ref.where('date', '==', value.format('DD-MM-YYYY'))).valueChanges({idField: 'id'})))
+      .pipe(switchMap(value => this.firestoreService.getTasks(value)))
       .subscribe(tasks => {
         this.tasks = tasks;
       });
   }
 
   submit() {
-    this.firestore.collection("tasks").add({
-      name: this.form?.value.name,
-      date: this.dateService.date.value.format('DD-MM-YYYY')
-    }).then(() => {
-      this.form.reset();
-    });
+    this.firestoreService
+      .addTask(this.form?.value.name, this.dateService.date.value)
+      .then(() => {
+        this.form.reset();
+      });
   }
 
   async remove(taskId: string) {
-    await this.firestore.collection("tasks").doc(taskId).delete();
+    await this.firestoreService.removeTask(taskId);
   }
 
 }
