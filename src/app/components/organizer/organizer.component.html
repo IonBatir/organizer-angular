@@ -1,1 +1,23 @@
-<p>organizer works!</p>
+<section>
+  <header>
+    Organizer: <strong>{{ dateService.date | async | dayjs:'DD.MM.YYYY' }}</strong>
+    <hr/>
+  </header>
+  <main>
+    <ul>
+      <li class="task"><span><strong></strong></span>
+        <button class="btn btn-primary">Șterge</button>
+      </li>
+    </ul>
+  </main>
+  <footer>
+    <form (ngSubmit)="submit()" [formGroup]="form">
+      <input type="text" formControlName="title">
+      <button type="submit"
+              class="btn btn-primary btn-block"
+              [disabled]="form.invalid">
+        Adaugă
+      </button>
+    </form>
+  </footer>
+</section>
