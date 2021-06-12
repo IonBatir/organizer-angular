@@ -1,1 +1,27 @@
-<p>calendar works!</p>
+<table>
+  <thead>
+  <tr>
+    <th>Lun</th>
+    <th>Mar</th>
+    <th>Mie</th>
+    <th>Joi</th>
+    <th>Vin</th>
+    <th>Sâm</th>
+    <th>Dum</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let week of calendar">
+    <td *ngFor="let day of week.days"
+        [class.disabled]="day.disabled"
+        (click)="select(day.value)">
+      <span
+        [class.selected]="day.selected"
+        [class.active]="day.active">
+        {{ day.value | dayjs:'ddd DD' }}
+      </span>
+    </td>
+  </tr>
+  </tbody>
+</table>

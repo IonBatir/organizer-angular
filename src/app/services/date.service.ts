@@ -14,5 +14,9 @@ export class DateService {
     this.date.next(value);
   }
 
+  changeDate(date: dayjs.Dayjs) {
+    const value = this.date.value.set('date', date.date()).set('month', date.month());
+    this.date.next(value);
+  }
 
 }
